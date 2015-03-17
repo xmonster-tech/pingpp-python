@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 import textwrap
@@ -53,10 +54,13 @@ except ImportError:
 
 def new_default_http_client(*args, **kwargs):
     if urlfetch:
+        logging.info("urlfetch")
         impl = UrlFetchClient
     elif requests:
+        logging.info("requests")
         impl = RequestsClient
     elif pycurl:
+        logging.info("pycurl")
         impl = PycurlClient
     else:
         impl = Urllib2Client
